@@ -5,7 +5,7 @@ services:
          apiToken := "api-token"
          client := prismatic.NewClient(nil, apiToken)
          // search for an interest
-         results, _, err := client.Topics.SearchForInterest("Kimende")
+         results, _, err := client.Topics.SearchForInterest("Clojure")
 The full Prismatic Interests API is documented at https://github.com/Prismatic/interest-graph.
 */
 package prismatic

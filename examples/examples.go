@@ -9,7 +9,7 @@ import (
 func main() {
 	apiToken := "api-token"
 	client := prismatic.NewClient(nil, apiToken)
-	results, _, err := client.Topics.SearchForInterest("Kimende")
+	results, _, err := client.Topics.SearchForInterest("Clojure")
 	if err != nil {
 		fmt.Printf("error: %v\n\n", err)
 	}
