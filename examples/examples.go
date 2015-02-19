@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	apiToken := "MTQyNDE4NDE4MTQxNQ.cHJvZA.am9obndlc29uZ2FAZ21haWwuY29t.ap9Wvx-Jd_kPA8g4ErfJD5UNBhA"
+	apiToken := "api-token"
 	client := prismatic.NewClient(nil, apiToken)
 	results, _, err := client.Topics.SearchForInterest("Kimende")
 	if err != nil {
