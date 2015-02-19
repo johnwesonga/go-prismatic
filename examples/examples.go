@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/johnwesonga/go-prism/prismatic"
+	"github.com/johnwesonga/go-prismatic/prismatic"
 )
 
 func main() {

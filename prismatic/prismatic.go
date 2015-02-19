@@ -20,10 +20,14 @@ type Client struct {
 	// HTTP client used to communicate with the API
 	client *http.Client
 
+	// Base URL for API requests.
 	BaseURL *url.URL
 
+	// Prismatic issued API Token.
 	ApiToken string
-	Topics   *TopicService
+
+	// Services used for talking to different parts of the Prismatic API.
+	Topics *TopicService
 }
 
 // NewClient returns a new Prismatic API client.  If a nil httpClient is
@@ -55,6 +59,7 @@ func (c *Client) NewRequest(method, urlStr string, body interface{}) (*http.Requ
 		return nil, err
 	}
 	u := c.BaseURL.ResolveReference(rel)
+	log.Println(u)
 
 	buf := new(bytes.Buffer)
 	if body != nil {
