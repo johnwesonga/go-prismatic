@@ -19,3 +19,10 @@ results, _, err := client.Topics.SearchForInterest("Clojure")
 
 ### Authentication ###
 The Prismatic API
+
+
+For complete usage of go-prismatic, see the full [package docs] (http://godoc.org/github.com/johnwesonga/go-prismatic/prismatic).
+
+
+### License ###
+This library is distributed under the BSD-style license
