@@ -13,9 +13,9 @@ type ResultResponse struct {
 	Result []Result `json:"results"`
 }
 
-// SearchForInterest
+// SearchForInterest.
 //
-// Prismatic API docs:
+// Prismatic API docs: https://github.com/Prismatic/interest-graph#search-for-an-interest
 func (s *TopicService) SearchForInterest(param string) (ResultResponse, *Response, error) {
 	result := new(ResultResponse)
 	u := fmt.Sprintf("/topic/search?search-query=%v", param)

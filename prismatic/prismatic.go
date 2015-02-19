@@ -1,3 +1,13 @@
+/*
+Package prismatic provides a client for using the Prismatic Interests API.
+Access different parts of the  API using the various
+services:
+         apiToken := "api-token"
+         client := prismatic.NewClient(nil, apiToken)
+         // search for an interest
+         results, _, err := client.Topics.SearchForInterest("Kimende")
+The full Prismatic Interests API is documented at https://github.com/Prismatic/interest-graph.
+*/
 package prismatic
 
 import (

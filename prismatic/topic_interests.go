@@ -11,7 +11,7 @@ type TextTopic struct {
 
 // Tag Text with Interests.
 //
-// https://github.com/Prismatic/interest-graph#tag-text-with-interests.
+// Prismatic API docs: https://github.com/Prismatic/interest-graph#tag-text-with-interests.
 func (s *TopicService) TagText(title, body string) (*TextTopic, *Response, error) {
 	topics := new(TextTopic)
 	if body == "" {

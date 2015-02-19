@@ -1,5 +1,7 @@
 # go-prismatic
-Go library for accessing the [Prismatic API] (https://github.com/Prismatic/interest-graph).
+go-prismatic is a Go library for accessing the [Prismatic API] (https://github.com/Prismatic/interest-graph).
+
+*Documentation:* [![GoDoc](https://godoc.org/github.com/johnwesonga/go-prismatic/prismatic?status.svg)](https://godoc.org/github.com/johnwesonga/go-prismatic/prismatic)
 
 go-prismatic requires Go version 1.1 or greater.
 
