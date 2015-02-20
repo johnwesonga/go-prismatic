@@ -1,12 +1,17 @@
 /*
 Package prismatic provides a client for using the Prismatic Interests API.
 Access different parts of the  API using the various
-services:
+services.
          apiToken := "api-token"
          client := prismatic.NewClient(nil, apiToken)
          // search for an interest
          results, _, err := client.Topics.SearchForInterest("Clojure")
 The full Prismatic Interests API is documented at https://github.com/Prismatic/interest-graph.
+
+Authentication
+
+The Prismatic API uses a token based authentication mechanism. The API token can be sent with the header
+or as a querystring. The library uses the header method.
 */
 package prismatic
 
