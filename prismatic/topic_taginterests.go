@@ -14,7 +14,7 @@ type TextTopic struct {
 // Prismatic API docs: https://github.com/Prismatic/interest-graph#tag-text-with-interests.
 func (s *TopicService) TagText(title, body string) (TextTopic, *Response, error) {
 	topics := new(TextTopic)
-	if body == "" {
+	if body == "" || len(body) < 140 {
 		log.Fatalln("The body of the text to tag. Must be at least 140 characters.")
 	}
 
