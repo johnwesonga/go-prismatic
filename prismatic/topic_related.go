@@ -2,12 +2,6 @@ package prismatic
 
 import "fmt"
 
-type Topic struct {
-	Topic string `json:"topic"`
-	Id    int    `json:"id"`
-	score int    `json:"id"`
-}
-
 type TopicResponse struct {
 	Topic []Topic `json:"topics"`
 }

@@ -1,8 +1,8 @@
 package prismatic
 
 import (
-	"fmt"
 	"log"
+	"net/url"
 )
 
 type TextTopic struct {
@@ -12,20 +12,26 @@ type TextTopic struct {
 // Tag Text with Interests.
 //
 // Prismatic API docs: https://github.com/Prismatic/interest-graph#tag-text-with-interests.
-func (s *TopicService) TagText(title, body string) (*TextTopic, *Response, error) {
+func (s *TopicService) TagText(title, body string) (TextTopic, *Response, error) {
 	topics := new(TextTopic)
 	if body == "" {
 		log.Fatalln("The body of the text to tag. Must be at least 140 characters.")
 	}
-	u := fmt.Sprintf("/text/topic/%v/%v", title, body)
-	req, err := s.client.NewRequest("POST", u, nil)
+
+	data := url.Values{}
+	data.Set("title", title)
+	data.Set("body", body)
+
+	req, err := s.client.NewRequest("POST", "/text/topic", data)
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+
 	if err != nil {
-		return nil, nil, err
+		return TextTopic{}, nil, err
 	}
 
-	resp, err := s.client.Do(req, result)
+	resp, err := s.client.Do(req, topics)
 	if err != nil {
-		return nil, resp, err
+		return TextTopic{}, resp, err
 	}
 
 	return *topics, resp, err
