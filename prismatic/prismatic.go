@@ -91,7 +91,7 @@ func (c *Client) NewRequest(method, urlStr string, payload url.Values) (*http.Re
 		return nil, err
 	}
 
-	return req, nil
+	return req, err
 }
 
 // Response is a Prismatic API response.  This wraps the standard http.Response

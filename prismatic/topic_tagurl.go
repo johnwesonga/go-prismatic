@@ -1,6 +1,9 @@
 package prismatic
 
-import "log"
+import (
+	"log"
+	"net/url"
+)
 
 type UrlTopic struct {
 	Topic []Topic `json:"topics"`
@@ -9,14 +12,14 @@ type UrlTopic struct {
 // Tag URL with interests.
 //
 // Prismatic API: https://github.com/Prismatic/interest-graph#tag-url-with-interests.
-func (s *TopicService) TagUrl(url string) (UrlTopic, *Response, error) {
+func (s *TopicService) TagUrl(webUrl string) (UrlTopic, *Response, error) {
 	urlTopic := new(UrlTopic)
-	if url == "" {
+	if webUrl == "" {
 		log.Fatalln("url is required")
 	}
 
 	data := url.Values{}
-	data.Set("url", url)
+	data.Set("url", webUrl)
 
 	req, err := s.client.NewRequest("POST", "/url/topic", data)
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
@@ -25,7 +28,7 @@ func (s *TopicService) TagUrl(url string) (UrlTopic, *Response, error) {
 		return UrlTopic{}, nil, err
 	}
 
-	resp, err := s.client.Do(req, topics)
+	resp, err := s.client.Do(req, urlTopic)
 	if err != nil {
 		return UrlTopic{}, resp, err
 	}
