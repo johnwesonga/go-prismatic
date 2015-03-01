@@ -13,7 +13,7 @@ var (
 	// mux is the HTTP request multiplexer used with the test server.
 	mux *http.ServeMux
 
-	// client is the GitHub client being tested.
+	// client is the Prismatic client being tested.
 	client *Client
 
 	// server is a test HTTP server used to provide mock API responses.
@@ -84,5 +84,35 @@ func TestSearchForRelatedTopic(t *testing.T) {
 
 	if !reflect.DeepEqual(results, want) {
 		t.Errorf("SearchForRelatedTopic returned %+v, want %+v", results, want)
+	}
+}
+
+func TestTagText(t *testing.T) {
+	setup()
+	defer teardown()
+
+	mux.HandleFunc("/text/topic", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "POST")
+		fmt.Fprintln(w, `{"topics": [ {"topic": "Clojure", "id": 1000, "score": 100} ]}`)
+	})
+
+	body := `Clojure is a dynamic programming language that targets the Java Virtual Machine 
+	(and the CLR, and JavaScript). It is designed to be a general-purpose language, 
+	combining the approachability and interactive development of a 
+	scripting language with an efficient and robust infrastructure for multithreaded programming.
+	Clojure is a compiled language - it compiles directly to JVM bytecode, 
+	yet remains completely dynamic. Every feature supported by Clojure is supported at runtime.`
+
+	results, _, err := client.Topics.TagText("Clojure", body)
+	if err != nil {
+		t.Error("TagText returned error: %v", err)
+	}
+
+	want := TextTopic{
+		[]Topic{{Topic: "Clojure", Id: 1000, Score: 100}},
+	}
+
+	if !reflect.DeepEqual(results, want) {
+		t.Errorf("TestTagText returned %+v, want %+v", results, want)
 	}
 }
