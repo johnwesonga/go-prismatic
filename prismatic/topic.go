@@ -5,7 +5,7 @@ type TopicService struct {
 }
 
 type Topic struct {
-	Topic string `json:"topic"`
-	Id    int    `json:"id"`
-	Score int    `json:"score"`
+	Topic string  `json:"topic"`
+	Id    int     `json:"id"`
+	Score float32 `json:"score"`
 }
