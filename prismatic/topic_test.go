@@ -40,6 +40,13 @@ func testMethod(t *testing.T, r *http.Request, want string) {
 	}
 }
 
+func TestNewClient(t *testing.T) {
+	c := NewClient(nil, "foo")
+	if got, want := c.BaseURL.String(), defaultBaseURL; got != want {
+		t.Errorf("NewClient BaseURL is %v, want %v", got, want)
+	}
+}
+
 func TestSearchForInterest(t *testing.T) {
 	setup()
 	defer teardown()
