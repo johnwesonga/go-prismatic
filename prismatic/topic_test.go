@@ -94,6 +94,29 @@ func TestSearchForRelatedTopic(t *testing.T) {
 	}
 }
 
+func TestTagUrl(t *testing.T) {
+	setup()
+	defer teardown()
+
+	mux.HandleFunc("/url/topic", func(w http.ResponseWriter, r *http.Request) {
+		testMethod(t, r, "POST")
+		fmt.Fprintln(w, `{"topics":[{"score":0.8,"topic":"Lisp (programming language)","id":2535}]}`)
+	})
+
+	results, _, err := client.Topics.TagUrl("http://en.wikipedia.org/wiki/Clojure")
+	if err != nil {
+		t.Error("TagUrl returned error: %v", err)
+	}
+
+	want := UrlTopic{
+		[]Topic{{Topic: "Lisp (programming language)", Id: 2535, Score: 0.8}},
+	}
+
+	if !reflect.DeepEqual(results, want) {
+		t.Errorf("TestTagUrl returned %+v, want %+v", results, want)
+	}
+}
+
 func TestTagText(t *testing.T) {
 	setup()
 	defer teardown()

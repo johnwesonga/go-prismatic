@@ -74,8 +74,6 @@ func (c *Client) NewRequest(method, urlStr string, payload url.Values) (*http.Re
 	}
 	u := c.BaseURL.ResolveReference(rel)
 
-	log.Printf("url: %v", u)
-
 	body := &bytes.Buffer{}
 
 	if payload != nil {

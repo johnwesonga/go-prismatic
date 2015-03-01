@@ -44,4 +44,11 @@ func main() {
 
 	fmt.Println(tagger)
 
+	r, _, err := client.Topics.TagUrl("http://en.wikipedia.org/wiki/Clojure")
+	if err != nil {
+		fmt.Printf("error: %v\n\n", err)
+	}
+
+	fmt.Println(r)
+
 }
